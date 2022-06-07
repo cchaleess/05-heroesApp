@@ -1,0 +1,20 @@
+<h1>Esta seguro ?</h1>
+<hr>
+<p>
+    Esta a punto de eliminar el siguiente registro:    
+    <br>
+    {{ data.superhero }}
+</p>
+
+<div fxLayout>
+    <button
+        mat-raised-button
+        color="warn"
+        (click)="borrar()"
+    >Si, borrar</button>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="cancelar()"
+    >No, cancelar</button>
+</div>

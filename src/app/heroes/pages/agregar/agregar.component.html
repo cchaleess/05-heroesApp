@@ -1,0 +1,114 @@
+<h1>
+  {{
+      (heroe.id)
+        ? 'Editar Heroe'
+        : 'Agregar Heroe'
+  }} 
+  <small>{{ heroe.superhero }}</small>
+</h1>
+
+<mat-divider></mat-divider>
+
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+  <div fxFlex="50" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+      <mat-form-field fxFlex="100">
+        <mat-label>Super Heroe</mat-label>
+        <input
+          required
+          matInput
+          type="text"
+          placeholder="Super Heroe"
+          aria-label="Super Heroe"
+          [(ngModel)]="heroe.superhero"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Alter Ego</mat-label>
+        <input
+          required
+          matInput
+          type="text"
+          placeholder="Alter Ego"
+          aria-label="Alter Ego"
+          [(ngModel)]="heroe.alter_ego"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Primera Aparición</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [(ngModel)]="heroe.first_appearance"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Personajes</mat-label>
+      <input matInput required type="text"
+        [(ngModel)]="heroe.characters"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Creador</mat-label>
+
+      <mat-select 
+        placeholder="Creador" 
+        required=""
+        [(ngModel)]="heroe.publisher"
+        >
+        <mat-option *ngFor="let item of publishers" [value]="item.id">
+          {{ item.desc }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Foto URL</mat-label>
+      <input matInput required 
+        type="url" 
+        [(ngModel)]="heroe.alt_img"
+        />
+    </mat-form-field>
+    <br />
+
+
+    <div fxLayout>
+
+        <button
+            mat-raised-button 
+            color="primary"
+            (click)="agregarHeroe()"
+            >
+        <mat-icon>add</mat-icon>
+        {{
+            (heroe.id)
+              ? 'Actualizar'
+              : 'Crear'
+        }} 
+        </button>
+
+        <span class="spacer"></span>
+        
+        <button
+            *ngIf="heroe.id"
+            mat-button 
+            color="warn"
+            (click)="borrarHeroe()"
+            >
+        <mat-icon>delete</mat-icon>
+        <span>Borrar</span>
+        </button>
+    </div>
+
+  </div>
+
+  <div fxFlex="50" fxLayout="column">
+    <img [src]="heroe | imagen" />
+  </div>
+</div>
